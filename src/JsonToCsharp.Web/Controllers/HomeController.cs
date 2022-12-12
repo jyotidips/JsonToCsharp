@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using JsonToCsharp.Core;
 using Microsoft.AspNetCore.Mvc;
 using JsonToCsharp.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using JsonToCsharp.Core;
 
 namespace JsonToCsharp.Web.Controllers
 {
+    [Controller]
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -17,7 +18,7 @@ namespace JsonToCsharp.Web.Controllers
                 new SelectListItem {Value = nameof(ListType.IEnumerable), Text = "IEnumerable"},
                 new SelectListItem {Value = nameof(ListType.IReadOnlyList), Text = "IReadOnlyList"},
             };
-            
+
             return View();
         }
 
@@ -44,7 +45,7 @@ namespace JsonToCsharp.Web.Controllers
 
                     return Result<IReadOnlyDictionary<string, string>>.CreateSuccess(classData);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return Result<IReadOnlyDictionary<string, string>>.CreateFail(e.Message);
                 }
@@ -52,5 +53,5 @@ namespace JsonToCsharp.Web.Controllers
         }
 
     }
-    
+
 }
